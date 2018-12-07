@@ -15,6 +15,6 @@ class HomeController extends Controller
         return $content
             ->header('统计图表')
             ->description('今日/本周/本月数据对比')
-            ->body(new Box('注册/登录图表', view('admin.chart', compact('register_num', 'login_num', 'ce'))));
+            ->body(new Box('注册/登录图表', view('admin.chart', compact('register_num', 'login_num'))));
     }
 }
