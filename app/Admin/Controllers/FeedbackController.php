@@ -81,6 +81,37 @@ class FeedbackController extends Controller
     {
         $grid = new Grid(new Feedback);
 
+        $grid->id('ID')->sortable();
+
+        $grid->name('名称');
+
+        $grid->mobile('联系方式');
+
+        $grid->content('反馈内容')->display(function ($content) {
+            return str_limit($content, 30, '...');
+        });
+
+        $status = [
+            'on' => ['value' => 1, 'text' => '已解决', 'color' => 'success'],
+            'off' => ['value' => 0, 'text' => '待解决', 'color' => 'danger'],
+        ];
+        $grid->status('待解决/已解决')->switch($status);
+
+        $grid->created_at('创建时间');
+        $grid->updated_at('修改时间');
+
+        $grid->disableCreateButton();//禁用创建按钮
+
+        //查询过滤器
+        $grid->filter(function($filter){
+
+            // 去掉默认的id过滤器
+            $filter->disableIdFilter();
+
+            // 在这里添加字段过滤器
+            $filter->like('name', '名称');
+            $filter->like('mobile', '联系方式');
+        });
 
 
         return $grid;
