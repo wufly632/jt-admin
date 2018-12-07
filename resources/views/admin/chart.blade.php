@@ -1,3 +1,4 @@
+<script src="/vendor/laravel-admin-ext/chartjs/Chart.bundle.min.js"></script>
 <canvas id="myChart" width="400" height="150"></canvas>
 <script>
     $(function () {
