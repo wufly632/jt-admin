@@ -14,5 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('admin/chart', 'ChartController@index')->name('chart.index');

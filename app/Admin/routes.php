@@ -11,5 +11,6 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
+    $router->resource('/app/feedback', 'FeedbackController');//app管理 - 意见反馈
 
 });
