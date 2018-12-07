@@ -3,32 +3,18 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\Dashboard;
-use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Layout\Row;
+use Encore\Admin\Widgets\Box;
 
 class HomeController extends Controller
 {
     public function index(Content $content)
     {
+        $register_num = '[12, 19, 48]';//注册
+        $login_num = '[30, 45, 87]';//登录
         return $content
-            ->header('Dashboard')
-            ->description('Description...')
-            ->row(Dashboard::title())
-            ->row(function (Row $row) {
-
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::environment());
-                });
-
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::extensions());
-                });
-
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::dependencies());
-                });
-            });
+            ->header('统计图表')
+            ->description('今日/本周/本月数据对比')
+            ->body(new Box('注册/登录图表', view('admin.chart', compact('register_num', 'login_num', 'ce'))));
     }
 }
